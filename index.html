@@ -81,14 +81,6 @@
             $(element).queryBuilder({filters, rules});
         }
 
-        function reinitializeQueryBuilder(rules) {
-            const element = document.getElementById('query-builder');
-            if (element) {
-                $(element).queryBuilder('destroy');
-                initializeQueryBuilder(element, rules);
-            }
-        }
-
         class QueryBuilderWrapper extends React.Component {
             constructor(props) {
                 super(props);
@@ -112,28 +104,28 @@
             handleSetRulesClick() {
                 const newRules = {...defaultRules};
                 newRules.rules[0].value = newRules.rules[0].value + 10;
+                $(this.refs.queryBuilder).queryBuilder('setRules', newRules);
                 this.setState({rules: newRules});
-                reinitializeQueryBuilder(newRules);
             }
 
             render() {
                 return (
-                        <div>
+                    <div>
                         <div id='query-builder' ref='queryBuilder'/>
                         <div className='row'>
-                        <div className='col-md-4'>
-                        <button className='btn btn-success' onClick={this.handleGetRulesClick.bind(this)}>GET RULES FROM QUERY BUILDER</button>
-                </div>
-                <div className='col-md-4'>
-                        <button className='btn btn-success' onClick={this.handleSetRulesClick.bind(this)}>SET RULES FROM REACT</button>
-                </div>
-                </div>
-                <pre>
-                Component state:
-                {JSON.stringify(this.state.rules, undefined, 2)}
-            </pre>
-                </div>
-            );
+                            <div className='col-md-4'>
+                                <button className='btn btn-success' onClick={this.handleGetRulesClick.bind(this)}>GET RULES FROM QUERY BUILDER</button>
+                            </div>
+                            <div className='col-md-4'>
+                                <button className='btn btn-success' onClick={this.handleSetRulesClick.bind(this)}>SET RULES FROM REACT</button>
+                            </div>
+                        </div>
+                        <pre>
+                            Component state:
+                            {JSON.stringify(this.state.rules, undefined, 2)}
+                        </pre>
+                    </div>
+                );
             }
         };
         ReactDOM.render(React.createElement(QueryBuilderWrapper), document.getElementById('react-app'));
