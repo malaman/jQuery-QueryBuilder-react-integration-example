@@ -7,7 +7,12 @@ Clone repository and open index.html
 ## Explanation
 
 To pass rules info from jQuery-QueryBuilder app to React component 'getRules' method of jQuery-QueryBuilder is used.
+
 To pass rules info from React component to jQuery-QueryBuilder, 'setRules' method of of jQuery-QueryBuilder is used.
+
+## Demo
+
+http://malaman.github.io/jQuery-QueryBuilder-react-integration-example/
 
 ## License
 MIT
