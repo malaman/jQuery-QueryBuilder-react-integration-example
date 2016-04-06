@@ -95,6 +95,9 @@
             componentWillUnmount() {
                 $(this.refs.queryBuilder).queryBuilder('destroy');
             }
+            componentShouldUpdate() {
+                return false;
+            }
             // get data from jQuery Query Builder and pass to the react component
             handleGetRulesClick() {
                 const rules = $(this.refs.queryBuilder).queryBuilder('getRules');
@@ -106,6 +109,7 @@
                 newRules.rules[0].value = newRules.rules[0].value + 10;
                 $(this.refs.queryBuilder).queryBuilder('setRules', newRules);
                 this.setState({rules: newRules});
+                this.forceUpdate();
             }
 
             render() {
